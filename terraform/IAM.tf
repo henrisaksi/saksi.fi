@@ -83,3 +83,11 @@ resource "google_service_account" "cloudbuild_service_account" {
   display_name = "cloudbuild-sa"
   description  = "Cloud build service account"
 }
+
+# Grant the custom Cloud Build service account permission to write logs to Cloud Logging during builds.
+resource "google_project_iam_member" "cloudbuild_custom_log_writer" {
+  project    = data.google_project.project.project_id
+  role       = "roles/logging.logWriter"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
