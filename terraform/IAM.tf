@@ -88,3 +88,36 @@ resource "google_project_iam_member" "custom_build_log_writer" {
   member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
   depends_on = [google_project_service.enabled_apis]
 }
+
+# Grant Cloud Deploy Viewer role to the dedicated Cloud Build service account.
+# This is needed for Cloud Build to be able to read delivery pipelines (required by `gcloud deploy releases create`).
+resource "google_project_iam_member" "custom_build_clouddeploy_viewer" {
+  project    = data.google_project.project.project_id
+  role       = "roles/clouddeploy.viewer"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+# Grant Storage Admin role to the dedicated Cloud Build service account.
+# This is required because Cloud Deploy may create temporary buckets or artifacts during release creation.
+resource "google_project_iam_member" "custom_build_storage_admin" {
+  project    = data.google_project.project.project_id
+  role       = "roles/storage.admin"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+# Grant Service Account User role to allow Cloud Build to impersonate other service accounts for deployments.
+resource "google_project_iam_member" "custom_build_service_account_user" {
+  project    = data.google_project.project.project_id
+  role       = "roles/iam.serviceAccountUser"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+# Grant Cloud Deploy Releaser role to allow Cloud Build to create and promote releases in Cloud Deploy.
+resource "google_project_iam_member" "custom_build_clouddeploy_releaser" {
+  project    = data.google_project.project.project_id
+  role       = "roles/clouddeploy.releaser"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
