@@ -3,5 +3,5 @@ apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryConfig
 metadata:
   name: sveltekit-delivery
-deployables:
+render:
   - manifestPath: clouddeploy/cloudrun-service.yaml
