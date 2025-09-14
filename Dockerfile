@@ -11,9 +11,9 @@ RUN npm run build
 # Production
 FROM node:20-slim
 WORKDIR /app
-COPY --from=build /app/build ./build
+COPY --from=build /app/build ./
 COPY svelte-app/package*.json ./
 RUN npm ci --omit=dev
 
 EXPOSE 8080
-CMD ["node", "build"]
+CMD ["node", "index.js"]
