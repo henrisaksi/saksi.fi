@@ -4,4 +4,4 @@ kind: DeliveryConfig
 metadata:
   name: sveltekit-delivery
 render:
-  - manifestPath: clouddeploy/cloudrun-service.yaml
+  manifestPath: clouddeploy/cloudrun-service.yaml
