@@ -14,7 +14,7 @@ steps:
       - deploy
       - releases
       - create
-      - release-${COMMIT_SHA:0:8}
+      - release-$SHORT_SHA
       - --delivery-pipeline=sveltekit-pipeline
       - --region=europe-north1
       - --images=svelte-app=${_IMAGE}
