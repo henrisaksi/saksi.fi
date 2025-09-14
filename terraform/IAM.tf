@@ -15,10 +15,6 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
-locals {
-  # Cloud Build SA (created automatically in your project)
-  cloudbuild_sa = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
-}
 
 resource "google_service_account" "cloud_run_sa" {
   account_id   = "cloud-run-sa"
@@ -40,33 +36,6 @@ resource "google_service_account" "prod_sa" {
 }
 
 
-resource "google_project_iam_member" "cloudbuild_deploy_run" {
-  project    = data.google_project.project.project_id
-  role       = "roles/run.admin"
-  member     = local.cloudbuild_sa
-  depends_on = [google_project_service.enabled_apis]
-}
-
-resource "google_project_iam_member" "cloudbuild_deploy_clouddeploy" {
-  project    = data.google_project.project.project_id
-  role       = "roles/clouddeploy.jobRunner"
-  member     = local.cloudbuild_sa
-  depends_on = [google_project_service.enabled_apis]
-}
-
-resource "google_project_iam_member" "cloudbuild_artifact_writer" {
-  project    = data.google_project.project.project_id
-  role       = "roles/artifactregistry.writer"
-  member     = local.cloudbuild_sa
-  depends_on = [google_project_service.enabled_apis]
-}
-
-resource "google_project_iam_member" "cloudbuild_sql_client" {
-  project    = data.google_project.project.project_id
-  role       = "roles/cloudsql.client"
-  member     = local.cloudbuild_sa
-  depends_on = [google_project_service.enabled_apis]
-}
 
 # Grant Secret Manager access to the Cloud Build GitHub connection service agent.
 # This is required because the Cloud Build GitHub connection needs permission to access
@@ -84,8 +53,36 @@ resource "google_service_account" "cloudbuild_service_account" {
   description  = "Cloud build service account"
 }
 
-# Grant the custom Cloud Build service account permission to write logs to Cloud Logging during builds.
-resource "google_project_iam_member" "cloudbuild_custom_log_writer" {
+# Grant permissions to the dedicated Cloud Build service account
+resource "google_project_iam_member" "custom_build_run_admin" {
+  project    = data.google_project.project.project_id
+  role       = "roles/run.admin"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+resource "google_project_iam_member" "custom_build_clouddeploy_runner" {
+  project    = data.google_project.project.project_id
+  role       = "roles/clouddeploy.jobRunner"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+resource "google_project_iam_member" "custom_build_artifact_writer" {
+  project    = data.google_project.project.project_id
+  role       = "roles/artifactregistry.writer"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+resource "google_project_iam_member" "custom_build_sql_client" {
+  project    = data.google_project.project.project_id
+  role       = "roles/cloudsql.client"
+  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
+  depends_on = [google_project_service.enabled_apis]
+}
+
+resource "google_project_iam_member" "custom_build_log_writer" {
   project    = data.google_project.project.project_id
   role       = "roles/logging.logWriter"
   member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
