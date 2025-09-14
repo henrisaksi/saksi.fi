@@ -1,14 +1,26 @@
 steps:
   # Build container
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest", "."]
+    args: ["build", "-t", "${_IMAGE}", "."]
   
   # Push image
   - name: gcr.io/cloud-builders/docker
-    args: ["push", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest"]
+    args: ["push", "${_IMAGE}"]
+
+  # Deploy release to Google Cloud Deploy
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - deploy
+      - releases
+      - create
+      - release-$COMMIT_SHA
+      - --delivery-pipeline=sveltekit-pipeline
+      - --region=europe-north1
+      - --images=svelte-app=${_IMAGE}
 
 images:
-  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest"
+  - "${_IMAGE}"
 
 options:
   logging: CLOUD_LOGGING_ONLY
@@ -16,3 +28,4 @@ options:
 substitutions:
   _REGION: "europe-north1"
   _REPO_NAME: "artifacts"
+  _IMAGE: "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest"
