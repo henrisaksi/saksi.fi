@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: svelte-app
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: svelte-app
+          ports:
+            - containerPort: 8080
