@@ -1,0 +1,15 @@
+steps:
+  # Build container
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest", "."]
+  
+  # Push image
+  - name: gcr.io/cloud-builders/docker
+    args: ["push", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest"]
+
+images:
+  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/sveltekit:latest"
+
+substitutions:
+  _REGION: "europe-north1"
+  _REPO_NAME: "artifacts"
