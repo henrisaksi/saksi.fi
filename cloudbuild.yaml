@@ -25,6 +25,7 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY
+  cache: true
 
 substitutions:
   _REGION: "europe-north1"
