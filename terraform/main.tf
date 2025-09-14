@@ -1,15 +1,14 @@
 terraform {
-  required_version = ">= 1.5.0"
+  required_version = ">= 1.9.8"
 
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 6.0" # adjust to latest stable
+      version = "~> 7.2"
     }
   }
 
   backend "gcs" {
-    bucket = "YOUR_TF_STATE_BUCKET"
     prefix = "terraform/state"
   }
 }
