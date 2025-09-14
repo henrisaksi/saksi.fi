@@ -121,3 +121,12 @@ resource "google_project_iam_member" "custom_build_clouddeploy_releaser" {
   member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
   depends_on = [google_project_service.enabled_apis]
 }
+
+# Allow unauthenticated (public) access to the Cloud Run service.
+resource "google_cloud_run_service_iam_member" "allow_unauthenticated" {
+  service  = google_cloud_run_service.svelte_app.name
+  location = var.region
+  project  = var.project_id
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
