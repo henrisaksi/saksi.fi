@@ -1,5 +1,3 @@
-
-
 apiVersion: skaffold/v4beta13
 kind: Config
 metadata:
@@ -10,3 +8,10 @@ build:
       context: .
       docker:
         dockerfile: Dockerfile
+deploy:
+  cloudrun:
+    projectid: project-moonshot-dev
+    region: europe-north1
+manifests:
+  rawYaml:
+    - ./clouddeploy/cloudrun-service.yaml
