@@ -1,6 +1,6 @@
 
 
-apiVersion: skaffold/v4beta11
+apiVersion: skaffold/v4beta13
 kind: Config
 metadata:
   name: svelte-app
@@ -10,7 +10,3 @@ build:
       context: .
       docker:
         dockerfile: Dockerfile
-deploy:
-  cloudrun:
-    manifests:
-      - clouddeploy/cloudrun-service.yaml
