@@ -18,7 +18,7 @@ steps:
       - --delivery-pipeline=sveltekit-pipeline
       - --region=europe-north1
       - --images=svelte-app=${_IMAGE}
-      - --source=./clouddeploy
+      - --source=.
 
 images:
   - "${_IMAGE}"
