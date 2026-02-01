@@ -3,7 +3,7 @@ resource "google_clouddeploy_delivery_pipeline" "svelte_pipeline" {
     google_clouddeploy_target.run_target,
     google_project_service.enabled_apis
   ]
-  name        = "sveltekit-pipeline"
+  name        = var.cloud_deploy_pipeline_name
   location    = var.region
   description = "CD pipeline for SvelteKit app"
 
@@ -16,7 +16,7 @@ resource "google_clouddeploy_delivery_pipeline" "svelte_pipeline" {
 }
 
 resource "google_clouddeploy_target" "run_target" {
-  name     = "sveltekit-run-target"
+  name     = var.cloud_deploy_target_name
   location = var.region
   project  = var.project_id
 

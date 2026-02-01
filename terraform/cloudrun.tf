@@ -1,5 +1,5 @@
 resource "google_cloud_run_v2_service" "svelte_app_v2" {
-  name     = "svelte-app"
+  name     = var.cloud_run_service_name
   location = var.region
 
   template {
@@ -18,6 +18,7 @@ resource "google_cloud_run_v2_service" "svelte_app_v2" {
     ignore_changes = [
       template[0].containers[0].image,
       template[0].service_account,
+      template[0].revision,
       scaling
     ]
   }

@@ -1,6 +1,6 @@
 resource "google_cloudbuildv2_connection" "github_conn" {
   location = var.region
-  name     = "github-connection"
+  name     = var.cloud_build_connection_name
   github_config {
     app_installation_id = var.github_cloudbuild_installation_id
     authorizer_credential {
@@ -26,7 +26,7 @@ resource "google_cloudbuildv2_repository" "github_repo" {
 }
 
 resource "google_cloudbuild_trigger" "github_trigger" {
-  name        = "sveltekit-trigger"
+  name        = var.cloud_build_trigger_name
   description = "Build and push SvelteKit app"
   location    = var.region
 

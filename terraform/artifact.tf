@@ -1,6 +1,6 @@
 resource "google_artifact_registry_repository" "app_repo" {
   location      = var.region
-  repository_id = "artifacts"
+  repository_id = var.artifact_repository_id
   format        = "DOCKER"
 
   depends_on = [google_project_service.enabled_apis]
