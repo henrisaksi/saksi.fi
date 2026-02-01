@@ -103,7 +103,6 @@
 								? 'active-card -translate-y-1 shadow-2xl bg-gray-800 border-gray-600'
 								: 'hover:-translate-y-1 hover:shadow-2xl hover:bg-gray-800 hover:border-gray-600'}"
 							on:mouseenter={() => (activeId = item.id)}
-							on:mouseleave={() => (activeId = null)}
 							use:scrollCenter={() => (activeId = item.id)}
 							role="group"
 						>
@@ -116,7 +115,9 @@
 								</span>
 								<h3
 									class="text-2xl font-bold text-white mb-1 transition-colors"
-									style="color: {activeId === item.id ? item.brandColor : ''}; --brand-hover-color: {item.brandColor}"
+									style="color: {activeId === item.id
+										? item.brandColor
+										: ''}; --brand-hover-color: {item.brandColor}"
 								>
 									{item.company}
 								</h3>

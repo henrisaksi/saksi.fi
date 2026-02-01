@@ -1,17 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { scrollCenter } from '$lib/actions/scrollCenter';
 	interface Skill {
 		name: string;
 		icon: string; // Path to SVG or class for icon font
 	}
-
-	const handlePointerLeave = () => {
-		isPaused = false;
-	};
-	const handlePointerEnter = () => {
-		isPaused = true;
-	};
 
 	const skills: Skill[] = [
 		{ name: 'Google Cloud', icon: '/icons/gcp.svg' },
@@ -29,26 +21,14 @@
 	];
 
 	let activeIndex = 0;
-	let isPaused = false;
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			if (!isPaused) {
-				activeIndex = (activeIndex + 1) % skills.length;
-			}
-		}, 2000); // Change every 2 seconds
-
-		return () => clearInterval(interval);
-	});
 </script>
 
 <section class="py-16 bg-gray-900" role="listitem">
 	<h2 class="text-4xl font-extrabold text-white text-center mb-12">Skills & Tools</h2>
 
 	<div
-		on:pointerenter={handlePointerEnter}
-		on:pointerleave={handlePointerLeave}
 		class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4"
+		role="list"
 	>
 		{#each skills as skill, i}
 			<div
@@ -59,6 +39,7 @@
 					? 'active'
 					: ''}"
 				on:pointerenter={() => (activeIndex = i)}
+				on:pointerleave={() => (activeIndex = -1)}
 				use:scrollCenter={() => {
 					if (typeof window !== 'undefined' && window.innerWidth < 1024) {
 						activeIndex = i;

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	const roles = ['Data Platform Engineer', 'Developer', 'Strategist'];
+	const roles = ['Data Platform Engineer', 'Developer', 'Data Engineer', 'Builder'];
 	let currentText = '';
 	let roleIndex = 0;
 	let charIndex = 0;
@@ -68,28 +68,57 @@
 
 	onMount(() => {
 		type();
+		lastScrollY = window.scrollY;
 		return () => clearTimeout(timeoutId); // Cleanup on destroy
 	});
 
 	let turbulence = spring(0, {
 		stiffness: 0.1,
-		damping: 0.25
+		damping: 0.15
 	});
 	let resetTimeout: number;
+	let lastScrollY = 0;
+	let lastTouch: { x: number; y: number } | null = null;
 
 	function handleMouseMove(event: MouseEvent) {
 		const speed = Math.hypot(event.movementX, event.movementY);
-		turbulence.set(Math.min(speed * 2, 20));
+		updateTurbulence(speed * 2);
+	}
 
-		clearTimeout(resetTimeout);
-		resetTimeout = window.setTimeout(() => {
-			turbulence.set(0);
-		}, 100);
+	function handleScroll() {
+		const currentScrollY = window.scrollY;
+		const speed = Math.abs(currentScrollY - lastScrollY);
+		lastScrollY = currentScrollY;
+		updateTurbulence(speed * 1.5);
+	}
+
+	function handleTouchMove(event: TouchEvent) {
+		const touch = event.touches[0];
+		if (lastTouch) {
+			const speed = Math.hypot(touch.clientX - lastTouch.x, touch.clientY - lastTouch.y);
+			updateTurbulence(speed * 2);
+		}
+		lastTouch = { x: touch.clientX, y: touch.clientY };
+	}
+
+	function updateTurbulence(value: number) {
+		if (value > 0) {
+			turbulence.set(Math.min(value, 20));
+
+			clearTimeout(resetTimeout);
+			resetTimeout = window.setTimeout(() => {
+				turbulence.set(0);
+				lastTouch = null;
+			}, 100);
+		}
 	}
 </script>
 
+<svelte:window on:scroll={handleScroll} />
+
 <section
 	on:mousemove={handleMouseMove}
+	on:touchmove={handleTouchMove}
 	class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden py-16 px-4"
 	role="img"
 >
