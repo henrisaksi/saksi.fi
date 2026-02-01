@@ -10,6 +10,7 @@ resource "google_project_service" "enabled_apis" {
     "serviceusage.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com",
+    "pubsub.googleapis.com",
   ])
 
   project = var.project_id
