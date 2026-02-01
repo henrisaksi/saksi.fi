@@ -25,7 +25,7 @@ resource "google_clouddeploy_target" "run_target" {
   }
 
   depends_on = [
-    google_cloud_run_service.svelte_app,
+    google_cloud_run_v2_service.svelte_app_v2,
     google_project_service.enabled_apis
   ]
 }

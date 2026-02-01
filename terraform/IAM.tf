@@ -100,8 +100,8 @@ resource "google_project_iam_member" "custom_build_clouddeploy_releaser" {
 }
 
 # Allow unauthenticated (public) access to the Cloud Run service.
-resource "google_cloud_run_service_iam_member" "allow_unauthenticated" {
-  service  = google_cloud_run_service.svelte_app.name
+resource "google_cloud_run_v2_service_iam_member" "allow_unauthenticated" {
+  name     = google_cloud_run_v2_service.svelte_app_v2.name
   location = var.region
   project  = var.project_id
   role     = "roles/run.invoker"

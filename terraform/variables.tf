@@ -30,3 +30,8 @@ variable "github_cloudbuild_installation_id" {
 variable "github_pat" {
   type = string
 }
+
+variable "domain_name" {
+  type        = string
+  description = "Custom domain name"
+}
