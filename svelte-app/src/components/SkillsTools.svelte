@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { scrollCenter } from '$lib/actions/scrollCenter';
 	interface Skill {
 		name: string;
 		icon: string; // Path to SVG or class for icon font
@@ -58,6 +59,11 @@
 					? 'active'
 					: ''}"
 				on:pointerenter={() => (activeIndex = i)}
+				use:scrollCenter={() => {
+					if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+						activeIndex = i;
+					}
+				}}
 			>
 				<img
 					src={skill.icon}
