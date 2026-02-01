@@ -71,9 +71,6 @@
 		return () => clearTimeout(timeoutId); // Cleanup on destroy
 	});
 
-	let mouseX = 0;
-	let mouseY = 0;
-
 	let turbulence = spring(0, {
 		stiffness: 0.1,
 		damping: 0.25
@@ -81,11 +78,6 @@
 	let resetTimeout: number;
 
 	function handleMouseMove(event: MouseEvent) {
-		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
-		// Normalize to -1 to 1 based on the element's center
-		mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-		mouseY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-
 		const speed = Math.hypot(event.movementX, event.movementY);
 		turbulence.set(Math.min(speed * 2, 20));
 
@@ -93,11 +85,6 @@
 		resetTimeout = window.setTimeout(() => {
 			turbulence.set(0);
 		}, 100);
-	}
-
-	$: if (typeof document !== 'undefined') {
-		document.documentElement.style.setProperty('--mouseX', mouseX.toFixed(2));
-		document.documentElement.style.setProperty('--mouseY', mouseY.toFixed(2));
 	}
 </script>
 

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	interface ExperienceItem {
 		id: number;
 		company: string;
