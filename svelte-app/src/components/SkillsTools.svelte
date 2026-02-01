@@ -23,7 +23,7 @@
 	let activeIndex = 0;
 </script>
 
-<section class="py-16 bg-gray-900" role="listitem">
+<section class="py-16 bg-transparent" role="listitem">
 	<h2 class="text-4xl font-extrabold text-white text-center mb-12">Skills & Tools</h2>
 
 	<div
@@ -34,7 +34,7 @@
 			<div
 				role="button"
 				tabindex="0"
-				class="skill-card relative flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg shadow-lg transition-all duration-300 ease-out cursor-pointer {activeIndex ===
+				class="skill-card relative flex flex-col items-center justify-center p-6 bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg transition-all duration-300 ease-out cursor-pointer {activeIndex ===
 				i
 					? 'active'
 					: ''}"

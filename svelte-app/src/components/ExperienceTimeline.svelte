@@ -65,7 +65,7 @@
 	}
 </script>
 
-<section class="relative py-24 bg-gray-900 overflow-hidden min-h-screen">
+<section class="relative py-24 bg-transparent overflow-hidden min-h-screen">
 	<div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 		<h2 class="text-5xl font-bold text-center text-white mb-20 tracking-tight">Experience</h2>
 

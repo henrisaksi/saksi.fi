@@ -1,8 +1,11 @@
 <script lang="ts">
 	import '../app.css';
+	import ParallaxBackground from '../components/ParallaxBackground.svelte';
 </script>
 
-<div class="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
+<ParallaxBackground />
+
+<div class="min-h-screen text-gray-100 flex flex-col relative z-10">
 	<slot />
 </div>
 
