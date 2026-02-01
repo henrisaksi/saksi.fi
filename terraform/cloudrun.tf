@@ -6,7 +6,7 @@ resource "google_cloud_run_service" "svelte_app" {
     spec {
       service_account_name = google_service_account.cloud_run_sa.email
       containers {
-        image = "gcr.io/cloudrun/hello"
+        image = "gcr.io/cloudrun/hello" // placeholder
       }
     }
   }
@@ -29,3 +29,14 @@ resource "google_cloud_run_service" "svelte_app" {
     ]
   }
 }
+
+#resource "google_cloud_run_domain_mapping" "default" {
+#  name     = "verified-domain.com"
+#  location = google_cloud_run_v2_service.default.location
+#  metadata {
+#    namespace = data.google_project.project.project_id
+#  }
+#  spec {
+#    route_name = google_cloud_run_v2_service.default.name
+#  }
+#}

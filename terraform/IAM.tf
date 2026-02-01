@@ -5,8 +5,6 @@
     - Cloud Run Admin (roles/run.admin): Allows Cloud Build to deploy and manage Cloud Run services.
     - Cloud Deploy Job Runner (roles/clouddeploy.jobRunner): Permits Cloud Build to trigger Cloud Deploy delivery pipelines.
     - Artifact Registry Writer (roles/artifactregistry.writer): Enables Cloud Build to push images and artifacts to Artifact Registry.
-    - Cloud SQL Client (roles/cloudsql.client): Allows Cloud Build to connect to Cloud SQL instances during builds or deployments.
-
   The data "google_project" resource is used to fetch project metadata such as the project ID and project number,
   which are required to correctly reference the Cloud Build service account in IAM member bindings.
 */
@@ -21,20 +19,6 @@ resource "google_service_account" "cloud_run_sa" {
   display_name = "Cloud Run Service Account"
   depends_on   = [google_project_service.enabled_apis]
 }
-
-# Service accounts for IAM-authenticated database users
-resource "google_service_account" "staging_sa" {
-  account_id   = "db-staging-sa"
-  display_name = "Service account for staging DB access"
-  depends_on   = [google_project_service.enabled_apis]
-}
-
-resource "google_service_account" "prod_sa" {
-  account_id   = "db-prod-sa"
-  display_name = "Service account for production DB access"
-  depends_on   = [google_project_service.enabled_apis]
-}
-
 
 
 # Grant Secret Manager access to the Cloud Build GitHub connection service agent.
@@ -71,13 +55,6 @@ resource "google_project_iam_member" "custom_build_clouddeploy_runner" {
 resource "google_project_iam_member" "custom_build_artifact_writer" {
   project    = data.google_project.project.project_id
   role       = "roles/artifactregistry.writer"
-  member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
-  depends_on = [google_project_service.enabled_apis]
-}
-
-resource "google_project_iam_member" "custom_build_sql_client" {
-  project    = data.google_project.project.project_id
-  role       = "roles/cloudsql.client"
   member     = "serviceAccount:${google_service_account.cloudbuild_service_account.email}"
   depends_on = [google_project_service.enabled_apis]
 }

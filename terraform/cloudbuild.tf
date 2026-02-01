@@ -31,20 +31,19 @@ resource "google_cloudbuild_trigger" "github_trigger" {
   location    = var.region
 
   repository_event_config {
-     repository = google_cloudbuildv2_repository.github_repo.id
-     push {
-       branch = "^main$"
-     }
-   }
+    repository = google_cloudbuildv2_repository.github_repo.id
+    push {
+      branch = "^main$"
+    }
+  }
 
   service_account = google_service_account.cloudbuild_service_account.id
-  filename = "cloudbuild.yaml"
+  filename        = "cloudbuild.yaml"
 
   depends_on = [
     google_project_iam_member.custom_build_run_admin,
     google_project_iam_member.custom_build_clouddeploy_runner,
     google_project_iam_member.custom_build_artifact_writer,
-    google_project_iam_member.custom_build_sql_client,
     google_cloudbuildv2_repository.github_repo,
     google_project_service.enabled_apis
   ]

@@ -1,0 +1,7 @@
+project_id                        = ""
+region                            = ""
+github_owner                      = ""
+github_repo                       = ""
+terraform_state_bucket_name       = ""
+github_cloudbuild_installation_id = ""
+github_pat                        = ""

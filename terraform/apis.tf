@@ -6,7 +6,6 @@ resource "google_project_service" "enabled_apis" {
     "clouddeploy.googleapis.com",
     "artifactregistry.googleapis.com",
     "run.googleapis.com",
-    "sqladmin.googleapis.com",
     "secretmanager.googleapis.com",
     "serviceusage.googleapis.com",
     "logging.googleapis.com",
