@@ -12,5 +12,6 @@
 <style lang="postcss">
 	:global(html) {
 		@apply scroll-smooth;
+		background-color: #111827;
 	}
 </style>
