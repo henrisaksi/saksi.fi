@@ -5,33 +5,34 @@
 		icon: string; // Path to SVG or class for icon font
 	}
 
-	const handleMouseLeave = () => {
-		isUserHovering = false;
+	const handlePointerLeave = () => {
+		isPaused = false;
 	};
-	const handleMouseEnter = () => {
-		isUserHovering = true;
+	const handlePointerEnter = () => {
+		isPaused = true;
 	};
 
 	const skills: Skill[] = [
 		{ name: 'Google Cloud', icon: '/icons/gcp.svg' },
 		{ name: 'Snowflake', icon: '/icons/snowflake.png' },
-		{ name: 'Fivetran', icon: '/icons/fivetran.png' },
-		{ name: 'Supermetrics', icon: '/icons/supermetrics.svg' },
+		{ name: 'BigQuery', icon: '/icons/bigquery.svg' },
 		{ name: 'Terraform', icon: '/icons/terraform.svg' },
 		{ name: 'Kubernetes', icon: '/icons/kubernetes.png' },
 		{ name: 'Python', icon: '/icons/python.png' },
 		{ name: 'Tableau', icon: '/icons/tableau.svg' },
 		{ name: 'dbt', icon: '/icons/dbt.svg' },
 		{ name: 'Dagster', icon: '/icons/dagster.svg' },
-		{ name: 'Airflow', icon: '/icons/airflow.svg' }
+		{ name: 'Airflow', icon: '/icons/airflow.svg' },
+		{ name: 'Supermetrics', icon: '/icons/supermetrics.svg' },
+		{ name: 'Fivetran', icon: '/icons/fivetran.png' }
 	];
 
 	let activeIndex = 0;
-	let isUserHovering = false;
+	let isPaused = false;
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			if (!isUserHovering) {
+			if (!isPaused) {
 				activeIndex = (activeIndex + 1) % skills.length;
 			}
 		}, 2000); // Change every 2 seconds
@@ -44,8 +45,8 @@
 	<h2 class="text-4xl font-extrabold text-white text-center mb-12">Skills & Tools</h2>
 
 	<div
-		on:mouseenter={handleMouseEnter}
-		on:mouseleave={handleMouseLeave}
+		on:pointerenter={handlePointerEnter}
+		on:pointerleave={handlePointerLeave}
 		class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4"
 	>
 		{#each skills as skill, i}
@@ -56,14 +57,12 @@
 				i
 					? 'active'
 					: ''}"
-				on:mouseenter={() => (activeIndex = i)}
+				on:pointerenter={() => (activeIndex = i)}
 			>
 				<img
 					src={skill.icon}
 					alt={skill.name}
-					class="w-16 h-16 mb-4 filter transition-all duration-300 ease-out {activeIndex === i
-						? 'grayscale-0'
-						: 'grayscale'}"
+					class="w-16 h-16 mb-4 filter transition-all duration-300 ease-out"
 				/>
 				<p class="text-lg font-semibold text-white">{skill.name}</p>
 			</div>
@@ -81,11 +80,21 @@
 			0 8px 10px -6px rgb(0 0 0 / 0.1);
 	}
 
+	.skill-card:hover img,
+	.skill-card.active img {
+		filter: grayscale(0);
+	}
+
 	.skill-card {
 		border: 1px solid transparent; /* Prevents layout shift when border appears */
 		transition:
 			transform 0.3s ease-out,
 			box-shadow 0.3s ease-out,
 			border 0.3s ease-out;
+	}
+
+	.skill-card img {
+		filter: grayscale(100%);
+		transition: filter 0.3s ease-out;
 	}
 </style>
