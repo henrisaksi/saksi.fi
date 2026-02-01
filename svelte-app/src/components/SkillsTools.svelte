@@ -7,7 +7,6 @@
 
 	const handleMouseLeave = () => {
 		isUserHovering = false;
-		// activeIndex = -1;
 	};
 	const handleMouseEnter = () => {
 		isUserHovering = true;
@@ -21,7 +20,10 @@
 		{ name: 'Terraform', icon: '/icons/terraform.svg' },
 		{ name: 'Kubernetes', icon: '/icons/kubernetes.png' },
 		{ name: 'Python', icon: '/icons/python.png' },
-		{ name: 'Tableau', icon: '/icons/tableau.svg' }
+		{ name: 'Tableau', icon: '/icons/tableau.svg' },
+		{ name: 'dbt', icon: '/icons/dbt.svg' },
+		{ name: 'Dagster', icon: '/icons/dagster.svg' },
+		{ name: 'Airflow', icon: '/icons/airflow.svg' }
 	];
 
 	let activeIndex = 0;
