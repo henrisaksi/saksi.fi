@@ -160,7 +160,7 @@
 							class="w-full bg-transparent text-xl md:text-3xl text-white placeholder-gray-600 outline-none py-4 px-6 pr-42 font-light resize-none overflow-hidden"
 							placeholder="I have an idea for..."
 							in:fade={{ duration: 300, delay: 50 }}
-						/>
+						></textarea>
 					</div>
 				{/if}
 

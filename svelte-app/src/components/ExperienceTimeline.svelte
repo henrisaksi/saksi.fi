@@ -103,7 +103,15 @@
 								? 'active-card -translate-y-1 shadow-2xl bg-gray-800 border-gray-600'
 								: 'hover:-translate-y-1 hover:shadow-2xl hover:bg-gray-800 hover:border-gray-600'}"
 							on:mouseenter={() => (activeId = item.id)}
-							use:scrollCenter={() => (activeId = item.id)}
+							use:scrollCenter={(isIntersecting: boolean) => {
+								if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+									if (isIntersecting) {
+										activeId = item.id;
+									} else if (activeId === item.id) {
+										activeId = null;
+									}
+								}
+							}}
 							role="group"
 						>
 							<div class="flex flex-col">

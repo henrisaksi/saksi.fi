@@ -20,7 +20,7 @@
 		{ name: 'Fivetran', icon: '/icons/fivetran.png' }
 	];
 
-	let activeIndex = 0;
+	let activeIndex = -1;
 </script>
 
 <section class="py-16 bg-transparent" role="listitem">
@@ -38,11 +38,15 @@
 				i
 					? 'active'
 					: ''}"
-				on:pointerenter={() => (activeIndex = i)}
-				on:pointerleave={() => (activeIndex = -1)}
-				use:scrollCenter={() => {
+				on:mouseenter={() => (activeIndex = i)}
+				on:mouseleave={() => (activeIndex = -1)}
+				use:scrollCenter={(isIntersecting: boolean) => {
 					if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-						activeIndex = i;
+						if (isIntersecting) {
+							activeIndex = i;
+						} else if (activeIndex === i) {
+							activeIndex = -1;
+						}
 					}
 				}}
 			>
