@@ -6,6 +6,7 @@
 		period: string;
 		description: string;
 		brandColor: string;
+		isOdd?: boolean;
 	}
 
 	const experiences: ExperienceItem[] = [
@@ -34,7 +35,7 @@
 			description: 'Minoring in Machine Learning, Data Science and Artificial Intelligence.',
 			brandColor: '#FF8D4F' // Aalto School of Science color (Orange)
 		}
-	];
+	].map((item, i) => ({ ...item, isOdd: i % 2 !== 0 }));
 
 	let activeBrandColor: string | null = null;
 
@@ -75,30 +76,28 @@
 		<div class="relative">
 			<!-- Vertical Spine -->
 			<div
-				class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-800 rounded-full"
+				class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-800 rounded-full"
 			></div>
 
-			{#each experiences as item, i}
+			{#each experiences as item (item.id)}
 				<!-- Timeline Row -->
-				<!-- i % 2 === 0 (Even): Content on Right -->
-				<!-- i % 2 !== 0 (Odd): Content on Left -->
 				<div
-					use:viewport
-					class="timeline-row flex items-center justify-between w-full mb-12 sm:mb-24 {i % 2 !== 0
-						? 'flex-row-reverse'
+					class="timeline-row flex items-center justify-between w-full mb-12 sm:mb-24 {item.isOdd
+						? 'md:flex-row-reverse timeline-row-odd'
 						: ''}"
+					use:viewport
 				>
 					<!-- Spacer (Opposite Side) -->
 					<div class="w-1/2 hidden md:block"></div>
 
 					<!-- Center Point (Absolute to Spine) -->
 					<div
-						class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4 border-gray-900 z-10 transition-colors duration-300 bg-gray-600"
+						class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4 border-gray-900 z-10 transition-colors duration-300 bg-gray-600"
 						style="background-color: {activeBrandColor === item.brandColor ? item.brandColor : ''}"
 					></div>
 
 					<!-- Content Card -->
-					<div class="w-full md:w-[45%] relative group">
+					<div class="w-full md:w-[45%] relative group pl-8 md:pl-0">
 						<div
 							class="p-6 md:p-8 rounded-2xl bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-gray-800 hover:border-gray-600"
 							on:mouseenter={() => (activeBrandColor = item.brandColor)}
@@ -151,12 +150,11 @@
 		transform: translateX(50px);
 	}
 
-	/* Odd (Left aligned content): Slide in from Left */
-	/* We used flex-row-reverse. So the content is visually on Left.
-       The whole row sliding from left (-50px) works well.
-    */
-	.timeline-row.flex-row-reverse {
-		transform: translateX(-50px);
+	/* Odd (Left aligned content): Slide in from Left (Desktop Only) */
+	@media (min-width: 768px) {
+		.timeline-row-odd {
+			transform: translateX(-50px);
+		}
 	}
 
 	/* Visible State */
