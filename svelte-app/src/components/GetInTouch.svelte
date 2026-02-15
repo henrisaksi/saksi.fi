@@ -123,7 +123,7 @@
 								></span
 							>
 						</div>
-						<div class="max-w-xl text-gray-400 italic group-hover:text-blue-300 break-words">
+						<div class="max-w-xl text-gray-400 italic group-hover:text-blue-300 wrap-break-word">
 							"{message}"
 						</div>
 					</div>
@@ -176,7 +176,6 @@
 							on:input={clearValidation}
 							class="w-full bg-transparent text-xl md:text-3xl text-white placeholder-gray-600 outline-none py-4 px-6 pr-42 font-light"
 							placeholder="My email is..."
-							autofocus
 						/>
 					</div>
 				{/if}
