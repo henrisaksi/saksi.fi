@@ -2,6 +2,8 @@
 
 [saksi.fi](https://saksi.fi)
 
+Want to use this as template? Check out the template repository: [henrisaksi/sveltekit-template](https://github.com/henrisaksi/sveltekit-template)
+
 My personal website is a containerized SvelteKit web application designed to run on Google Cloud Run. It utilizes a modern tech stack and a robust GitOps-style deployment pipeline managed by Google Cloud Build and Cloud Deploy. Infrastructure is provisioned using Terraform.
 
 ## 🚀 Technologies
