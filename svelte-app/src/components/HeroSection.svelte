@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	const roles = ['Data Platform Engineer', 'Developer', 'Data Engineer', 'Builder'];
+	const roles = ['Data Platform Engineer', 'Developer', 'Data Engineer', 'Freelancer', 'Builder'];
 	let currentText = '';
 	let roleIndex = 0;
 	let charIndex = 0;

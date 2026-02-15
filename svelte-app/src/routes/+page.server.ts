@@ -19,7 +19,7 @@ export const actions = {
 				const messageId = await pubSubClient.topic(topicName).publishMessage({ data: dataBuffer });
 				console.log(`Message ${messageId} published to ${topicName}`);
 			} catch (error) {
-				console.error(`Received error while publishing: ${error.message}`);
+				console.error(`Received error while publishing: ${(error as Error).message}`);
 				// Consider whether to fail the request or just log the error
 				// return fail(500, { error: 'Failed to send message' });
 			}
