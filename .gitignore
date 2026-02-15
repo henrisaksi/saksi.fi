@@ -1,3 +1,4 @@
 prod.tfvars
 terraform.tfvars
 .terraform
+.DS_Store
