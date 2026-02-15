@@ -19,9 +19,6 @@ variable "github_repo" {
   description = "GitHub repository name"
 }
 
-variable "terraform_state_bucket_name" {
-  type = string
-}
 
 variable "github_cloudbuild_installation_id" {
   type = number
