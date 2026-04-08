@@ -3,35 +3,6 @@
 	import ExperienceTimeline from '../components/ExperienceTimeline.svelte';
 	import SkillsTools from '../components/SkillsTools.svelte';
 	import GetInTouch from '../components/GetInTouch.svelte';
-
-	const schema = {
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Henri Saksi',
-		url: 'https://saksi.fi',
-		jobTitle: 'Data Platform Engineer',
-		sameAs: ['https://www.linkedin.com/in/henrisaksi/', 'https://github.com/henrisaksi'],
-		knowsAbout: [
-			'Data Platform Engineering',
-			'Data Engineering',
-			'Google Cloud Platform',
-			'Snowflake',
-			'BigQuery',
-			'dbt',
-			'Python',
-			'Terraform',
-			'Agentic Coding',
-			'Svelte',
-			'TypeScript'
-		],
-		makesOffer: {
-			'@type': 'Offer',
-			itemOffered: {
-				'@type': 'Service',
-				name: 'Freelance Data Engineering Services'
-			}
-		}
-	};
 </script>
 
 <svelte:head>
@@ -52,8 +23,36 @@
 	<meta property="og:type" content="profile" />
 	<meta property="og:url" content="https://saksi.fi/" />
 	<meta property="og:image" content="https://saksi.fi/images/profile-picture.jpeg" />
+	<link rel="canonical" href="https://saksi.fi/" />
 	<script type="application/ld+json">
-		{@html JSON.stringify(schema)}
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Henri Saksi",
+			"url": "https://saksi.fi",
+			"jobTitle": "Data Platform Engineer",
+			"sameAs": ["https://www.linkedin.com/in/henrisaksi/", "https://github.com/henrisaksi"],
+			"knowsAbout": [
+				"Data Platform Engineering",
+				"Data Engineering",
+				"Google Cloud Platform",
+				"Snowflake",
+				"BigQuery",
+				"dbt",
+				"Python",
+				"Terraform",
+				"Agentic Coding",
+				"Svelte",
+				"TypeScript"
+			],
+			"makesOffer": {
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Freelance Data Engineering Services"
+				}
+			}
+		}
 	</script>
 </svelte:head>
 
