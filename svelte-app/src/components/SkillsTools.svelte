@@ -14,6 +14,10 @@
 		{ name: 'Python', icon: '/icons/python.png' },
 		{ name: 'Tableau', icon: '/icons/tableau.svg' },
 		{ name: 'dbt', icon: '/icons/dbt.svg' },
+		{ name: 'Claude Code', icon: '/icons/claude.png' },
+		{ name: 'Looker', icon: '/icons/looker.png' },
+		{ name: 'Svelte', icon: '/icons/svelte.png' },
+		{ name: 'ArgoCD', icon: '/icons/argo_cd.png' },
 		{ name: 'Dagster', icon: '/icons/dagster.svg' },
 		{ name: 'Airflow', icon: '/icons/airflow.svg' },
 		{ name: 'Supermetrics', icon: '/icons/supermetrics.svg' },
@@ -53,7 +57,7 @@
 				<img
 					src={skill.icon}
 					alt={skill.name}
-					class="w-16 h-16 mb-4 filter transition-all duration-300 ease-out"
+					class="w-16 h-16 object-contain mb-4 filter transition-all duration-300 ease-out"
 				/>
 				<p class="text-lg font-semibold text-white">{skill.name}</p>
 			</div>

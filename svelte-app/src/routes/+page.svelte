@@ -9,16 +9,16 @@
 	<title>Henri Saksi - Data Platform Engineer</title>
 	<meta
 		name="description"
-		content="Henri Saksi is a Data Platform Engineer specializing in GCP, Snowflake, and Python. Open to freelance opportunities in data engineering and agentic coding."
+		content="Henri Saksi is a Data Platform Engineer building scalable cloud infrastructure. Specialized in modern data stacks including GCP, Snowflake, Kubernetes and dbt."
 	/>
 	<meta
 		name="keywords"
-		content="Data Platform Engineer, Data Engineer, Freelancer, Agentic Coding, GCP, Snowflake, Python, Terraform"
+		content="Data Platform Engineer, Data Engineer, Freelancer, Agentic Coding, GCP, Snowflake, Python, Terraform, Helsinki, Finland"
 	/>
-	<meta property="og:title" content="Henri Saksi - Data Platform Engineer & Freelancer" />
+	<meta property="og:title" content="Henri Saksi - Data Platform Engineer" />
 	<meta
 		property="og:description"
-		content="Building scalable data platforms and modern web solutions. Expert in GCP, Snowflake, and Agentic Coding."
+		content="Henri Saksi is a Data Platform Engineer building scalable cloud infrastructure. Specialized in modern data stacks including GCP, Snowflake, Kubernetes and dbt."
 	/>
 	<meta property="og:type" content="profile" />
 	<meta property="og:url" content="https://saksi.fi/" />
@@ -35,23 +35,46 @@
 			"knowsAbout": [
 				"Data Platform Engineering",
 				"Data Engineering",
-				"Google Cloud Platform",
+				"Data Architecture",
+				"Cloud Infrastructure",
+				"Google Cloud Platform (GCP)",
 				"Snowflake",
 				"BigQuery",
 				"dbt",
 				"Python",
 				"Terraform",
+				"Kubernetes",
+				"ArgoCD",
+				"Dagster",
+				"Airflow",
+				"Fivetran",
+				"Supermetrics",
+				"Tableau",
+				"Looker",
 				"Agentic Coding",
+				"Claude Code",
 				"Svelte",
-				"TypeScript"
+				"TypeScript",
+				"SQL"
 			],
-			"makesOffer": {
-				"@type": "Offer",
-				"itemOffered": {
-					"@type": "Service",
-					"name": "Freelance Data Engineering Services"
+			"makesOffer": [
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Freelance Data Engineering",
+						"description": "Building scalable cloud data platforms and modern data stacks."
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Data Platform Architecture",
+						"description": "Designing robust, automated, and secure data infrastructure using Infrastructure as Code."
+					}
 				}
-			}
+			]
 		}
 	</script>
 </svelte:head>

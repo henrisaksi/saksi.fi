@@ -90,7 +90,7 @@
 
 	<div class="w-full max-w-3xl relative">
 		{#if isSent}
-			<div in:fade={{ duration: 400 }} class="text-center absolute inset-0 -top-10">
+			<div in:fade={{ duration: 400 }} class="text-center w-full pb-10">
 				<div
 					class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500 mb-6 shadow-[0_0_20px_rgba(34,197,94,0.5)]"
 				>
@@ -254,6 +254,28 @@
 			{/if}
 		{/if}
 	</div>
+
+	<!-- Social Icons -->
+	<div class="mt-24 flex justify-center items-center gap-8">
+		<a
+			href="https://github.com/henrisaksi/saksi.fi"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="social-card relative flex flex-col items-center justify-center p-5 bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg cursor-pointer"
+			aria-label="GitHub Repository"
+		>
+			<img src="/icons/github.png" alt="GitHub" class="w-12 h-12" />
+		</a>
+		<a
+			href="https://www.linkedin.com/in/henrisaksi/"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="social-card relative flex flex-col items-center justify-center p-5 bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-lg cursor-pointer"
+			aria-label="LinkedIn Profile"
+		>
+			<img src="/icons/linkedin.png" alt="LinkedIn" class="w-12 h-12" />
+		</a>
+	</div>
 </section>
 
 <style>
@@ -280,5 +302,34 @@
 		60% {
 			transform: translate3d(4px, 0, 0);
 		}
+	}
+
+	/* Social Icons Styling matching Skills section */
+	.social-card:hover,
+	.social-card:focus {
+		transform: scale(1.05);
+		border: 1px solid theme('colors.blue.500');
+		box-shadow:
+			0 20px 25px -5px rgb(0 0 0 / 0.1),
+			0 8px 10px -6px rgb(0 0 0 / 0.1);
+		outline: none;
+	}
+
+	.social-card:hover img,
+	.social-card:focus img {
+		filter: grayscale(0);
+	}
+
+	.social-card {
+		border: 1px solid transparent;
+		transition:
+			transform 0.3s ease-out,
+			box-shadow 0.3s ease-out,
+			border 0.3s ease-out;
+	}
+
+	.social-card img {
+		filter: grayscale(100%);
+		transition: filter 0.3s ease-out;
 	}
 </style>
