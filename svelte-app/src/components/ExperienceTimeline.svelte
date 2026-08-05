@@ -14,14 +14,22 @@
 	const experiences: ExperienceItem[] = [
 		{
 			id: 1,
+			company: 'NestAI',
+			title: 'Member of Technical Staff',
+			period: 'August 2026 - Present',
+			description: 'Building AI platform infrastructure.',
+			brandColor: '#6366F1'
+		},
+		{
+			id: 2,
 			company: 'Supermetrics',
 			title: 'Lead Data Platform Engineer',
-			period: '2026 - Present',
+			period: '2026 - July 2026',
 			description: 'Designing and developing internal Data Platform.',
 			brandColor: '#D32329' // Red
 		},
 		{
-			id: 2,
+			id: 3,
 			company: 'Fiksuruoka.fi – Foodello',
 			title: 'Chief Data Officer',
 			period: '2018 - 2025',
@@ -30,7 +38,7 @@
 			brandColor: '#2e7a75' // Green
 		},
 		{
-			id: 3,
+			id: 4,
 			company: 'Aalto University',
 			title: 'MSc in Industrial Engineering and Management',
 			period: '2014 - 2021',
