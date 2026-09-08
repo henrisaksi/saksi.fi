@@ -17,7 +17,8 @@
 			company: 'NestAI',
 			title: 'Member of Technical Staff',
 			period: 'August 2026 - Present',
-			description: 'Building AI platform infrastructure.',
+			description:
+				'Building NestOS, the adaptive operating system for modern battlefield operations',
 			brandColor: '#6366F1'
 		},
 		{
